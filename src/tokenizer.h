@@ -22,10 +22,14 @@ int non_space_char(char c){
    space-separated word in zero-terminated str.  Return a zero pointer if 
    str does not contain any words. */
 char *word_start(char *str){
-  while(*str){
+  while(*str){ /* Until end of str */
     int i = 0;
-    if(*str[i] != ' ' || *str[i] != '\t') return *str[i];
-    else if(*str[i-1] == ' ' || *str[i] == '\t') return *str[i];
+    if(*str[i] != ' ' || *str[i] != '\t') return *str[i];  /* Returns pointer of first char if its 
+							      not a whitespace */
+    
+    else if(*str[i-1] == ' ' || *str[i] == '\t') return *str[i]; /* Returns pointer to first char
+								    of word if previous char is a
+								    whitespace */
   }
   if(!*str) return 0;
 }
