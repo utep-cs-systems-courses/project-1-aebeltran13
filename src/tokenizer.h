@@ -5,42 +5,20 @@
 /* Return true (non-zero) if c is a whitespace characer
    ('\t' or ' ').  
    Zero terminators are not printable (therefore false) */
-int space_char(char c){
-  if (c == ' ' || c == '\t') return true;
-  else return false;
-}
+int space_char(char c);
 
 /* Return true (non-zero) if c is a non-whitespace 
    character (not tab or space).  
    Zero terminators are not printable (therefore false) */ 
-int non_space_char(char c){
-  if (c == ' ' || c == '\t') return false;
-  else return true;
-}
+int non_space_char(char c);
   
 /* Returns a pointer to the first character of the next 
    space-separated word in zero-terminated str.  Return a zero pointer if 
    str does not contain any words. */
-char *word_start(char *str){
-  while(*str){ /* Until end of str */
-    int i = 0;
-    if(*str[i] != ' ' || *str[i] != '\t') return *str[i];  /* Returns pointer of first char if its 
-							      not a whitespace */
-    
-    else if(*str[i-1] == ' ' || *str[i] == '\t') return *str[i]; /* Returns pointer to first char
-								    of word if previous char is a
-								    whitespace */
-  }
-  if(!*str) return 0;
-}
+char *word_start(char *str);
 
 /* Returns a pointer terminator char following *word */
-char *word_terminator(char *word){
-  while(*word){
-    
-  }
-  if(!*word) return 0;
-}
+char *word_terminator(char *word);
 
 /* Counts the number of words in the string argument. */
 int count_words(char *str);
