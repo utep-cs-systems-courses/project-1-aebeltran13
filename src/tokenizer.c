@@ -29,7 +29,7 @@ char *word_start(char *str){
   while(space_char(*str)){
     str++;
   }
-  return *str;
+  return str;
 }
 
 /* Returns a pointer terminator char following *word */
@@ -37,18 +37,28 @@ char *word_terminator(char *word){
   while(non_space_char(*word)){
     word++;
   }
-  return *word;
+  return word;
 }
 
 /* Counts the number of words in the string argument. */
 int count_words(char *str){
-  
+  int num_of_words = 0;
+  char prev_char = ' ';
+  while(*str){
+    if(non_space_char(prev_char) && space_char(*str)){ /*if previous char is not a space and 
+							 current
+							 is, then it reached end of word */
+	num_of_words++;
+      }
+    prev_char = *str;
+    *str++;
+  }
+  return num_of_words;
 }
 
 /* Returns a fresly allocated new zero-terminated string 
    containing <len> chars from <inStr> */
 char *copy_str(char *inStr, short len){
-  
 }
 
 /* Returns a freshly allocated zero-terminated vector of freshly allocated 
