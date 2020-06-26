@@ -26,6 +26,7 @@ int non_space_char(char c){
    space-separated word in zero-terminated str.  Return a zero pointer if 
    str does not contain any words. */
 char *word_start(char *str){
+  if(!*str) return 0;
   while(space_char(*str)){
     str++;
   }
@@ -45,20 +46,33 @@ int count_words(char *str){
   int num_of_words = 0;
   char prev_char = ' ';
   while(*str){
-    if(non_space_char(prev_char) && space_char(*str)){ /*if previous char is not a space and 
-							 current
-							 is, then it reached end of word */
-	num_of_words++;
-      }
-    prev_char = *str;
-    *str++;
-  }
-  return num_of_words;
+    if(non_space_char(prev_char) && space_char(str)){
+      num_of_words++;
+      printf("%s\t%s\t%d\n", prev_char, str, num_of_words);
+  
+  /*
+  char startp;     this holds the pointer to the word start teminator 
+  if(!*str) return 0;
+  while(*str){
+    startp = word_start(str);  Look for start of next word 
+    if(word_terminator(startp)){   if it has an end then its word else there are no more words 
+      num_of_words++;
+      str = word_terminator(startp) + 1;
+    }else{
+      break;
+    }
+    } */
+  return 5;
 }
-
 /* Returns a fresly allocated new zero-terminated string 
    containing <len> chars from <inStr> */
 char *copy_str(char *inStr, short len){
+  char *word = malloc(len + 1);
+  for(int i = 0; i < len; i++){
+    word[i] = inStr[i];
+  }
+  word[len] = '\0';
+  return word;
 }
 
 /* Returns a freshly allocated zero-terminated vector of freshly allocated 
@@ -76,10 +90,18 @@ char **tokenize(char* str){
 
 /* Prints all tokens. */
 void print_tokens(char **tokens){
-
+  while(*tokens){
+    printf("%s\n", *tokens);
+    tokens++;
+  }
 }
 
 /* Frees all tokens and the vector containing themx. */
 void free_tokens(char **tokens){
-  
+  int count = 0;
+  while(*tokens){
+    free(tokens[count]);
+    count++;
+  }
 }
+
