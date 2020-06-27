@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#inlcude "history.h"
+#include "history.h"
 #include "tokenizer.h"
 
 typedef struct s_Item {
@@ -30,7 +30,7 @@ void add_history(List *list, char *str){
    List* list - the linked list
    int id - the id of the Item to find */
 char *get_history(List *list, int id){
-
+  return 0;
 }
 
 /*Print the entire contents of the list. */

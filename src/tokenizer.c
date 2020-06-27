@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tokenizer.h"
-#include "history.h"
+/*#include "history.h"*/
 
 /* Return true (non-zero) if c is a whitespace character ('\t' or ' ').
    Zero terminators are not printable (therefore false) */
@@ -46,10 +46,10 @@ int count_words(char *str){
   int num_of_words = 0;
   char prev_char = ' ';
   while(*str){
-    if(non_space_char(prev_char) && space_char(str)){
+    if(non_space_char(prev_char) && space_char(*str)){
       num_of_words++;
-      printf("%s\t%s\t%d\n", prev_char, str, num_of_words);
     }
+    prev_char = *str;
   }
   /*
   char startp;     this holds the pointer to the word start teminator 
@@ -87,7 +87,7 @@ char *copy_str(char *inStr, short len){
 */
 char **tokenize(char *str){
   int num_words = count_words(str);
-  char **tokens = malloc(sizeof*num_words +1);
+  char **tokens = malloc(num_words +1);
   char **point = tokens;
   char *start = str;
   char *end;

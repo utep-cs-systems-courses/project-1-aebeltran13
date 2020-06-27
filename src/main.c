@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tokenizer.h"
-#include "history.h"
+/*#include "history.h"*/
 #define MAX 64
 
 /* Small set of strings to introduce the program */
@@ -15,7 +15,7 @@ int main(){
   char string[MAX];
   intro();
   printf("> ");
-  fgets(string, MAX, stdin);
+  scanf("%[^\n]%*c", string); /* %[^\n] will scan until it finds new line*/
   printf("%s\n", string);
   char **tokens = tokenize(string);
   print_tokens(tokens);
