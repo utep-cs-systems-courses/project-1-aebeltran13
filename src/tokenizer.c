@@ -49,7 +49,8 @@ int count_words(char *str){
     if(non_space_char(prev_char) && space_char(str)){
       num_of_words++;
       printf("%s\t%s\t%d\n", prev_char, str, num_of_words);
-  
+    }
+  }
   /*
   char startp;     this holds the pointer to the word start teminator 
   if(!*str) return 0;
@@ -62,7 +63,7 @@ int count_words(char *str){
       break;
     }
     } */
-  return 5;
+  return num_of_words;
 }
 /* Returns a fresly allocated new zero-terminated string 
    containing <len> chars from <inStr> */
@@ -84,8 +85,21 @@ char *copy_str(char *inStr, short len){
      tokens[2] = "string" 
      tokens[3] = 0
 */
-char **tokenize(char* str){
-
+char **tokenize(char *str){
+  int num_words = count_words(str);
+  char **tokens = malloc(sizeof*num_words +1);
+  char **point = tokens;
+  char *start = str;
+  char *end;
+  for(int i = 0; i< num_words; i++){
+    start = word_start(start);
+    end = word_terminator(start);
+    int word_len = end - start;
+    *point = copy_str(start, word_len);
+    point++;
+    start = end;
+  }
+  return tokens;
 }
 
 /* Prints all tokens. */
