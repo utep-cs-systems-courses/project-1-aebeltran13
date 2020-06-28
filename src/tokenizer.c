@@ -50,7 +50,9 @@ int count_words(char *str){
       num_of_words++;
     }
     prev_char = *str;
+    str++;
   }
+  
   /*
   char startp;     this holds the pointer to the word start teminator 
   if(!*str) return 0;
