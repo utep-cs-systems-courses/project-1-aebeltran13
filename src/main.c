@@ -13,11 +13,19 @@ void intro(){
 /* MAIN FUNC */
 int main(){
   char string[MAX];
+  char user_choice = 'y'; /* Users choice to continue runnin the file */
   intro();
-  printf("> ");
-  scanf("%[^\n]%*c", string); /* %[^\n] will scan until it finds new line*/
-  printf("%s\n", string);
-  char **tokens = tokenize(string);
-  print_tokens(tokens);
+
+  while(user_choice == 'y'){
+    printf("> ");
+    scanf("%[^\n]%*c", string); /* %[^\n] will scan until it finds new line*/
+    printf("%s\n", string);
+    char **tokens = tokenize(string);
+    print_tokens(tokens);
+
+    printf("Type 'y' for another sentence, 'h' for history, 'n' to quit\n");
+    scanf("%s", user_choice);
+  }
+  
   return 0;
 }

@@ -2,11 +2,13 @@ Project 1: Tokenizer
 ====================
 # Instructions:
 
-You should document your tokenizer in this file.
+To run the program simply type *make* and it should copile and ask the user for
+some input.
 
-This file is written in the refreshingly simple `markdown` text
-formatting language.
+# Known Bugs
 
-To learn about text formatting using markdown, we encourage you to examine 
- - [../README.md](../README.md)
- - the online [Markdown Guide](https://www.markdownguide.org/).
+-After tokenizing sentence, if there is no space at the end it does not read
+ the last word.(FIXED)
+-When printing tokens, error message "Segmentation fault (core dumped)"
+ appears. This is because print_tokens is trying to access information that is
+ not there.
