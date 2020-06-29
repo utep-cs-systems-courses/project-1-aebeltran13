@@ -7,3 +7,4 @@ clean:
 main.o: main.c
 
 tokenizer.o: tokenizer.h tokenizer.c
+

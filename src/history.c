@@ -15,7 +15,9 @@ typedef struct s_List {
 
 /* Initialize the linked list to keep the history. */
 List* init_history(){
-
+  List *list = malloc(sizeof(List));
+  list->root = 0;
+  return list;
 }
 
 /* Add a history item to the end of the list.
@@ -30,15 +32,33 @@ void add_history(List *list, char *str){
    List* list - the linked list
    int id - the id of the Item to find */
 char *get_history(List *list, int id){
+  Item *new_list = list->root;
+  while(new_list != NULL){
+    if(new_list->id == id){  /* Print item if id matches id that we are looking for */
+      return new_list->str;
+    }
+    new_list->next;
+  }
   return 0;
 }
 
 /*Print the entire contents of the list. */
 void print_history(List *list){
-
+  Item *new_list = list->root;
+  while(*new_list != NULL){
+    print("%d. %s\n", new_list->id, new_list->str);
+    new_list = new_list->next;
+  }
 }
 
 /*Free the history list and the strings it references. */
 void free_history(List *list){
-
+  Item *new_list = list->root;
+  Item *temp;
+  while(*new_list != NULL){
+    temp = new_list->next;
+    free(new_list->str);
+    free(new_list);
+    new_list = temp;
+  }
 }
