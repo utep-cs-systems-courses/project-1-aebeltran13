@@ -3,16 +3,6 @@
 #include "history.h"
 #include "tokenizer.h"
 
-typedef struct s_Item {
-  int id;
-  char *str;
-  struct s_Item *next;
-} Item;
-
-typedef struct s_List {
-  struct s_Item *root;
-} List;
-
 /* Initialize the linked list to keep the history. */
 List* init_history(){
   List *list = malloc(sizeof(List));
@@ -45,8 +35,8 @@ char *get_history(List *list, int id){
 /*Print the entire contents of the list. */
 void print_history(List *list){
   Item *new_list = list->root;
-  while(*new_list != NULL){
-    print("%d. %s\n", new_list->id, new_list->str);
+  while(new_list != NULL){
+    printf("%d. %s\n", new_list->id, new_list->str);
     new_list = new_list->next;
   }
 }
@@ -55,7 +45,7 @@ void print_history(List *list){
 void free_history(List *list){
   Item *new_list = list->root;
   Item *temp;
-  while(*new_list != NULL){
+  while(new_list != NULL){
     temp = new_list->next;
     free(new_list->str);
     free(new_list);

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tokenizer.h"
-/* #include "history.h"*/
+#include "history.h"
 #define MAX 64
 
 /* Small set of strings to introduce the program */
