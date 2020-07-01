@@ -12,6 +12,7 @@ int main(){
   char string[MAX];
   char user_choice[] = "AGN"; /* Users choice to continue running the file */
   int Power_on = 1;
+  List *history_list = init_history();
 
   printf("  Project 1: TOKENIZER\n++++++++++++++++++++++++\n\n");
   
@@ -20,11 +21,15 @@ int main(){
       printf("Enter a string(64 characters MAX)\n");
       printf("> ");
       scanf("%[^\n]%*c", string); /* %[^\n] will scan until it finds new line*/
-      /*      fgets(string, sizeof(string), stdin);*/
     }
     else if(str_compare(user_choice, "HST") == 0){ /*HST History*/
       /*Printing history and getting previously added string*/
-      printf("in History\n");
+      int id_choice;
+      printf("++ History ++\n");
+      print_history(history_list);
+      printf("Which one would you like to re-use?\n!");
+      /* scanf("%d",&id_choice);
+      /*      string = get_history(history_list, id_choice);*/
     }
     else if(str_compare(user_choice, "EOP") == 0){ /*EOP End Of Programm*/
       printf("Thanks, Bye!\n");
@@ -32,8 +37,8 @@ int main(){
     }else{
       printf("Unknown Command.\n");
       /*Enter user_choice funciton here*/
-      printf("Enter Command: \"AGN\" to enter a new string,"
-	     "\"HST\" to view history, \"EOP\" to quit.\n");
+      printf("\nEnter Command: \"AGN\" to enter a new string,"
+	    "\"HST\" to view history, \"EOP\" to quit.\n");
       scanf("%[^\n]%*c",user_choice);
       printf("\n");
       continue;
@@ -41,13 +46,18 @@ int main(){
 
     /*After getting a string we tokenize and print tokens. Ask for user_choice*/
     printf("%s\n", string);
-    /*tokenize and print tokenz here*/
-    
+    /*tokenize and print tokens here*/
+    char **tokens = tokenize(string);
+    print_tokens(tokens);
+    add_history(history_list, string);
+    free_tokens(tokens);
+    /*Command menu to choose what to do next*/
     printf("\nEnter Command: \"AGN\" to enter a new string,"
 	    "\"HST\" to view history, \"EOP\" to quit.\n");
     scanf("%[^\n]%*c",user_choice);
     printf("\n");
   }
+  free_history(history_list);
    
   return 0;
 }

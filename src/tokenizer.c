@@ -79,7 +79,7 @@ char *copy_str(char *inStr, short len){
 */
 char **tokenize(char *str){
   int num_words = count_words(str);
-  char **tokens = malloc(num_words +1);
+  char **tokens = malloc(sizeof(char*)*(num_words +1));
   char **point = tokens;
   char *start = str;
   char *end;
@@ -91,6 +91,7 @@ char **tokenize(char *str){
     point++;
     start = end;
   }
+  tokens[num_words] = 0;
   return tokens;
 }
 
@@ -104,10 +105,8 @@ void print_tokens(char **tokens){
 
 /* Frees all tokens and the vector containing themx. */
 void free_tokens(char **tokens){
-  int count = 0;
-  while(*tokens){
-    free(tokens[count]);
-    count++;
+  for(int i = 0; tokens[i] != 0; i++){
+    free(tokens[i]);
   }
 }
 

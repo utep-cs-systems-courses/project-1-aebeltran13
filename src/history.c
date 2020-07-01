@@ -40,13 +40,13 @@ void add_history(List *list, char *str){
    int id - the id of the Item to find */
 char *get_history(List *list, int id){
   Item *new_list = list->root;
-  while(new_list != NULL){
+  while(new_list->next != NULL){
     if(new_list->id == id){  /* Print item if id matches id that we are looking for */
       return new_list->str;
     }
-    new_list->next;
+    new_list = new_list->next;
   }
-  return 0;
+  return new_list;
 }
 
 /*Print the entire contents of the list. */
