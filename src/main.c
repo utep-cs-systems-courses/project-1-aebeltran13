@@ -19,19 +19,23 @@ int main(){
     if(str_compare(user_choice, "AGN") == 0){ /*AGN Again: Enter a new String*/
       printf("Enter a string(64 characters MAX)\n");
       printf("> ");
-      /*scanf("%[^\n]%*c", string); /* %[^\n] will scan until it finds new line*/
-      fgets(string, sizeof(string), stdin);
+      scanf("%[^\n]%*c", string); /* %[^\n] will scan until it finds new line*/
+      /*      fgets(string, sizeof(string), stdin);*/
     }
-    if(str_compare(user_choice, "HST") == 0){ /*HST History*/
+    else if(str_compare(user_choice, "HST") == 0){ /*HST History*/
       /*Printing history and getting previously added string*/
-      printf("in History");
+      printf("in History\n");
     }
-    if(str_compare(user_choice, "EOP") == 0){ /*EOP End Of Programm*/
-      printf("Thanks, Bye!");
+    else if(str_compare(user_choice, "EOP") == 0){ /*EOP End Of Programm*/
+      printf("Thanks, Bye!\n");
       break;
     }else{
-      printf("Unknown Command.");
+      printf("Unknown Command.\n");
       /*Enter user_choice funciton here*/
+      printf("Enter Command: \"AGN\" to enter a new string,"
+	     "\"HST\" to view history, \"EOP\" to quit.\n");
+      scanf("%[^\n]%*c",user_choice);
+      printf("\n");
       continue;
     }
 
@@ -39,9 +43,10 @@ int main(){
     printf("%s\n", string);
     /*tokenize and print tokenz here*/
     
-    printf("Enter Command: \"AGN\" to enter a new string,"
-	   + "\"HST\" to view history, \"EOP\" to quit.\n");
-    
+    printf("\nEnter Command: \"AGN\" to enter a new string,"
+	    "\"HST\" to view history, \"EOP\" to quit.\n");
+    scanf("%[^\n]%*c",user_choice);
+    printf("\n");
   }
    
   return 0;
