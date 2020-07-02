@@ -60,12 +60,13 @@ int count_words(char *str){
 /* Returns a fresly allocated new zero-terminated string 
    containing <len> chars from <inStr> */
 char *copy_str(char *inStr, short len){
-  char *word = malloc(len + 1);
+  char *word = (char*)malloc(len + 1);
+  char *first_char = word;
   for(int i = 0; i < len; i++){
     word[i] = inStr[i];
   }
   word[len] = '\0';
-  return word;
+  return first_char;
 }
 
 /* Returns a freshly allocated zero-terminated vector of freshly allocated 

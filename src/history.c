@@ -46,7 +46,7 @@ char *get_history(List *list, int id){
     }
     new_list = new_list->next;
   }
-  return new_list;
+  return new_list->str;
 }
 
 /*Print the entire contents of the list. */
@@ -76,6 +76,6 @@ char *str_copy(char *str){
   while(*end != '\0'){
     end++;
   }
-  int len = end-str-1; /*-1 to make up for \0*/
+  int len = end-str;
   return copy_str(str,len);
 }
