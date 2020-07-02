@@ -7,12 +7,11 @@ Run token_test(./token_test) in order to start the tokenizer.
 
 # Known Bugs
 
-  -When printing history it does not print the last letter of the string.
-  -When getting history it skips input for next command.
+  - When getting history it skips input for next command.
 
 # Collaboration
 
-  -Abram helped me fix a bug in my get_history function where the list would
+  - Abram helped me fix a bug in my get_history function where the list would
    not proceed to go to the next item.
 
 # Resources

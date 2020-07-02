@@ -6,7 +6,6 @@
 
 /*Declaring str_compare*/
 int str_compare(char *str1, char *str2);
-char get_user_choice(char str);
 
 /* MAIN FUNC */
 int main(){
@@ -19,10 +18,11 @@ int main(){
   
   while(Power_on != 0){
     if(str_compare(user_choice, "AGN") == 0){ /*AGN Again: Enter a new String*/
+      
       printf("Enter a string(64 characters MAX)\n");
       printf("> ");
       scanf("%[^\n]%*c", string); /* %[^\n] will scan until it finds new line*/
-
+      
       /*After getting a string we tokenize*/
       printf("%s\n", string);
       /*tokenize and print tokens here*/
@@ -33,22 +33,23 @@ int main(){
 
       /*Printing history and getting previously added string*/
       int id_choice;
-      printf("++ History ++\n");
+      printf("++ History ++ \n");
       print_history(history_list);
       printf("Which one would you like to re-use?\n!");
-      scanf("%d",&id_choice);
+      scanf("%d%*c",&id_choice);            /*%*c reads the character after and discards it*/
+      printf("%d\n", id_choice);
       char *hist_string = get_history(history_list, id_choice);
 
       /*After getting a string we tokenize*/
       printf("%s\n", hist_string);
-      /*tokenize and print tokens here*/
       tokens = tokenize(hist_string);
       add_history(history_list, hist_string);
     }
     else if(str_compare(user_choice, "EOP") == 0){ /*EOP End Of Programm*/
       printf("Thanks, Bye!\n");
       break;
-    }else{
+    }else{                                        /*UNKNOWN COMMAND*/
+
       printf("Unknown Command.\n");
       /*Enter user_choice funciton here*/
       printf("\nEnter Command: \"AGN\" to enter a new string,"
